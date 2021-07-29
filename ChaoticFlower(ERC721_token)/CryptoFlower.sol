@@ -50,12 +50,12 @@ contract CryptoFlower is Migrations, ERC721PresetMinterPauserAutoId {
 		x = x % maxId;//Number must be bellow maxId obviously
 		x = uint256(uint160(idToAddress[x]));//Random address is selected and tranformed to uint256
 		x = uint256(keccak256(abi.encodePacked(blockHashNow, x, block.coinbase)));//The implementation of BlockHash and the miner address, just for fun
-		x = x - (x % 100); //aixo s'ha d'arreglar
+		x = x - (x % 100);
 		x = x / auxAmount;
 		x = x % unity;
 		return (x);
 	}
-	//Token Generator  FALTA EL EVENTO
+	//Token Generator  
 	function buyToken(uint256 _amount) public returns(uint256 _tokenId){
 		require (chaos.balanceOf(msg.sender) >= _amount && _amount >= minAmount && _amount <= maxAmount, "Error in your balance account or amount payed.");
 		//Find a new SEED (x)
